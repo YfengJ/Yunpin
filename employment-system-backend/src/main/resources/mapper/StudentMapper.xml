@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.employment.mapper.StudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.employment.entity.Student">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="fullname" property="fullname" />
+        <result column="gender" property="gender" />
+        <result column="age" property="age" />
+        <result column="university" property="university" />
+        <result column="major" property="major" />
+        <result column="resume_content" property="resumeContent" />
+
+        <result column="avatar" property="avatar" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="expected_salary" property="expectedSalary" />
+        <result column="job_intention" property="jobIntention" />
+
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectById" resultMap="BaseResultMap"> SELECT * FROM student WHERE id = #{id} </select>
+    <select id="selectByUserId" resultMap="BaseResultMap"> SELECT * FROM student WHERE user_id = #{userId} </select>
+    <select id="selectAll" resultMap="BaseResultMap"> SELECT * FROM student </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO student(user_id, fullname, gender, age, university, major, resume_content,
+                            avatar, phone, email, expected_salary, job_intention, create_time, update_time)
+        VALUES (#{userId}, #{fullname}, #{gender}, #{age}, #{university}, #{major}, #{resumeContent},
+                #{avatar}, #{phone}, #{email}, #{expectedSalary}, #{jobIntention}, NOW(), NOW())
+    </insert>
+
+    <update id="update">
+        UPDATE student
+        SET fullname = #{fullname},
+            gender = #{gender},
+            age = #{age},
+            university = #{university},
+            major = #{major},
+            resume_content = #{resumeContent},
+            avatar = #{avatar},
+            phone = #{phone},
+            email = #{email},
+            expected_salary = #{expectedSalary},
+            job_intention = #{jobIntention},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById"> DELETE FROM student WHERE id = #{id} </delete>
+
+</mapper>

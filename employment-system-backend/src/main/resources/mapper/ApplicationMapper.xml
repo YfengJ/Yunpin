@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.employment.mapper.ApplicationMapper">
+
+    <resultMap id="DetailMap" type="com.example.employment.entity.Application">
+        <id column="id" property="id" />
+        <result column="student_id" property="studentId" />
+        <result column="job_id" property="jobId" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="reason" property="reason" />
+        <result column="interview_time" property="interviewTime" />
+        <result column="interview_location" property="interviewLocation" />
+        <result column="interview_contact" property="interviewContact" />
+
+        <association property="student" javaType="com.example.employment.entity.Student">
+            <result column="s_fullname" property="fullname" />
+            <result column="s_avatar" property="avatar" />
+            <result column="s_university" property="university" />
+            <result column="s_major" property="major" />
+            <result column="s_gender" property="gender" />
+            <result column="s_age" property="age" />
+            <result column="s_phone" property="phone" />
+            <result column="s_email" property="email" />
+            <result column="s_resume" property="resumeContent" />
+            <result column="s_salary" property="expectedSalary" />
+            <result column="s_intention" property="jobIntention" />
+        </association>
+
+        <association property="job" javaType="com.example.employment.entity.Job">
+            <id column="j_id" property="id"/>
+            <result column="j_name" property="jobName" />
+            <result column="j_salary" property="salary" />
+            <result column="j_company_id" property="companyId" />
+            <result column="company_name" property="companyName" />
+        </association>
+    </resultMap>
+
+    <sql id="Detail_Columns">
+        a.*,
+        a.reason, a.interview_time, a.interview_location, a.interview_contact,
+        s.fullname as s_fullname, s.avatar as s_avatar, s.university as s_university,
+        s.major as s_major, s.gender as s_gender, s.age as s_age, s.phone as s_phone,
+        s.email as s_email, s.resume_content as s_resume, s.expected_salary as s_salary,
+        s.job_intention as s_intention,
+        j.id as j_id, j.job_name as j_name, j.salary as j_salary, j.company_id as j_company_id,
+        c.company_name  </sql>
+
+    <select id="findById" resultMap="DetailMap">
+        SELECT <include refid="Detail_Columns"/>
+        FROM application a
+        LEFT JOIN student s ON a.student_id = s.user_id
+        LEFT JOIN job j ON a.job_id = j.id
+        LEFT JOIN company c ON j.company_id = c.id
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="DetailMap">
+        SELECT <include refid="Detail_Columns"/>
+        FROM application a
+        LEFT JOIN student s ON a.student_id = s.user_id
+        LEFT JOIN job j ON a.job_id = j.id
+        LEFT JOIN company c ON j.company_id = c.id
+    </select>
+
+    <select id="findByStudentId" resultMap="DetailMap">
+        SELECT <include refid="Detail_Columns"/>
+        FROM application a
+        LEFT JOIN student s ON a.student_id = s.user_id
+        LEFT JOIN job j ON a.job_id = j.id
+        LEFT JOIN company c ON j.company_id = c.id WHERE a.student_id = #{studentId}
+        ORDER BY a.create_time DESC
+    </select>
+
+    <select id="findByJobId" resultMap="DetailMap">
+        SELECT <include refid="Detail_Columns"/>
+        FROM application a
+        LEFT JOIN student s ON a.student_id = s.user_id
+        LEFT JOIN job j ON a.job_id = j.id
+        LEFT JOIN company c ON j.company_id = c.id
+        WHERE a.job_id = #{jobId}
+    </select>
+
+    <select id="findByStatus" resultMap="DetailMap">
+        SELECT <include refid="Detail_Columns"/>
+        FROM application a
+        LEFT JOIN student s ON a.student_id = s.user_id
+        LEFT JOIN job j ON a.job_id = j.id
+        LEFT JOIN company c ON j.company_id = c.id
+        WHERE a.status = #{status}
+    </select>
+
+    <select id="findByCompanyUserId" resultMap="DetailMap">
+        SELECT <include refid="Detail_Columns"/>
+        FROM application a
+        LEFT JOIN student s ON a.student_id = s.user_id
+        LEFT JOIN job j ON a.job_id = j.id
+        LEFT JOIN company c ON j.company_id = c.id
+        WHERE c.user_id = #{userId}
+        ORDER BY a.create_time DESC
+    </select>
+
+    <select id="search" resultMap="DetailMap">
+        SELECT <include refid="Detail_Columns"/>
+        FROM application a
+        LEFT JOIN student s ON a.student_id = s.user_id
+        LEFT JOIN job j ON a.job_id = j.id
+        LEFT JOIN company c ON j.company_id = c.id
+        <where>
+            <if test="role == 'STUDENT'">
+                AND a.student_id = #{userId}
+            </if>
+            <if test="role == 'COMPANY'">
+                AND c.user_id = #{userId}
+            </if>
+            <if test="status != null and status != ''">
+                AND a.status = #{status}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND (
+                s.fullname LIKE CONCAT('%', #{keyword}, '%')
+                OR
+                j.job_name LIKE CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO application(student_id, job_id, status, create_time)
+        VALUES (#{studentId}, #{jobId}, #{status}, NOW())
+    </insert>
+
+    <update id="update">
+        UPDATE application
+        SET
+            status = #{status},
+            reason = #{reason},
+            interview_time = #{interviewTime},
+            interview_location = #{interviewLocation},
+            interview_contact = #{interviewContact},
+            student_id = #{studentId},
+            job_id = #{jobId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM application WHERE id = #{id}
+    </delete>
+
+</mapper>

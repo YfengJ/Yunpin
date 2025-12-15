@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.employment.mapper.JobMapper">
+
+    <resultMap id="JobResultMap" type="com.example.employment.entity.Job">
+        <id property="id" column="id" />
+        <result property="companyId" column="company_id" />
+        <result property="jobName" column="job_name" />
+        <result property="salary" column="salary" />
+        <result property="description" column="description" />
+        <result property="status" column="status" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+
+        <result property="companyName" column="company_name" />
+    </resultMap>
+
+    <select id="findAll" resultMap="JobResultMap">
+        SELECT
+        j.*,
+        c.company_name
+        FROM job j
+        LEFT JOIN company c ON j.company_id = c.id
+        <where>
+            <if test="name != null and name != ''">
+                AND j.job_name LIKE concat('%', #{name}, '%')
+            </if>
+        </where>
+        ORDER BY j.create_time DESC
+    </select>
+
+    <select id="findById" resultMap="JobResultMap">
+        SELECT j.*, c.company_name
+        FROM job j
+                 LEFT JOIN company c ON j.company_id = c.id
+        WHERE j.id = #{id}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(*) FROM job
+    </select>
+
+    <insert id="insert" parameterType="com.example.employment.entity.Job">
+        INSERT INTO job (company_id, job_name, salary, description, status, create_time, update_time)
+        VALUES (#{companyId}, #{jobName}, #{salary}, #{description}, 'active', NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.example.employment.entity.Job">
+        UPDATE job
+        SET company_id = #{companyId}, job_name = #{jobName},
+            salary = #{salary},
+            description = #{description},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM job WHERE id = #{id}
+    </delete>
+
+</mapper>

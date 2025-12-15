@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.employment.mapper.CompanyMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.employment.entity.Company">
+        <id column="id" property="id" />
+        <result column="company_name" property="companyName" />
+        <result column="description" property="description" />
+        <result column="contact_phone" property="contactPhone" />
+        <result column="address" property="address" />
+        <result column="user_id" property="userId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM company
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM company WHERE id = #{id}
+    </select>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT * FROM company WHERE user_id = #{userId}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO company(company_name, description, contact_phone, address, user_id, create_time, update_time)
+        VALUES (#{companyName}, #{description}, #{contactPhone}, #{address}, #{userId}, NOW(), NOW())
+    </insert>
+
+    <update id="update">
+        UPDATE company
+        SET company_name = #{companyName},
+            description = #{description},
+            contact_phone = #{contactPhone},
+            address = #{address},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM company WHERE id = #{id}
+    </delete>
+
+</mapper>
