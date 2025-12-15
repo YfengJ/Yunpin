@@ -48,21 +48,27 @@ MyJobSystem/
 ### 登录界面
 ![登录页面](screenshots/login.png)
 <img width="1277" height="672" alt="login" src="https://github.com/user-attachments/assets/9f0104f1-52b3-4161-bd0e-386282388054" />
+
 ### 注册界面
 ![注册页面](screenshots/register.png)
 <img width="1279" height="665" alt="register" src="https://github.com/user-attachments/assets/4dbbf1b4-a9f6-4103-a0ff-3915e22312bd" />
+
 ### 职位大厅
 ![职位列表](screenshots/jobhall.png)
 <img width="1279" height="658" alt="jobhall" src="https://github.com/user-attachments/assets/b171b6b8-f9c7-45b1-b981-46ed33ea3b47" />
+
 ### 申请
 ![申请](screenshots/application.png)
 <img width="1270" height="667" alt="application" src="https://github.com/user-attachments/assets/2c6fff69-6b57-4138-85b7-802a5af23643" />
+
 ### 个人中心
 ![个人中心](screenshots/profile.png)
 <img width="1276" height="665" alt="profile" src="https://github.com/user-attachments/assets/1957a091-a461-4302-97cd-5612305ec2dd" />
+
 ### 主页
 ![主页](screenshots/home.png)
 <img width="1264" height="665" alt="home" src="https://github.com/user-attachments/assets/816f0afb-e2d2-47f2-8f72-1e3e91ca868c" />
+
 🚀 快速开始 | Quick Start
 1. 后端启动 (Backend)
 确保本地已安装 JDK 17+ 和 MySQL。
