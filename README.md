@@ -47,7 +47,8 @@ MyJobSystem/
 
 ### 登录界面
 ![登录页面](screenshots/login.png)
-<img width="1277" height="672" alt="login" src="https://github.com/user-attachments/assets/84bd141a-3bbc-4549-a870-0b285754f2ee" />
+<img width="1277" height="672" alt="login" src="https://github.com/user-attachments/assets/a94eab5d-d957-4e1e-8ec4-79641a3cb723" />
+
 
 ### 注册界面
 ![注册页面](screenshots/register.png)
