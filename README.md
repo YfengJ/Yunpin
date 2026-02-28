@@ -2,8 +2,9 @@
 
 <div align="center">
   <img src="https://img.shields.io/badge/Release-v1.0.0-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Framework-Vue_3.x-4fc08d?style=for-the-badge&logo=vue.js" />
-  <img src="https://img.shields.io/badge/Backend-SpringBoot_3.x-6db33f?style=for-the-badge&logo=springboot" />
+  <img src="https://img.shields.io/badge/Vue_3.5-Composition_API-4fc08d?style=for-the-badge&logo=vue.js" />
+  <img src="https://img.shields.io/badge/SpringBoot_3.x-MyBatis-6db33f?style=for-the-badge&logo=springboot" />
+  <img src="https://img.shields.io/badge/Visual-ECharts_5-AA3D64?style=for-the-badge&logo=apacheecharts" />
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
 </div>
 
@@ -11,130 +12,120 @@
 
 ## 📖 项目深度背景 | Project Overview
 
-在当今数字化校园求职环境下，传统的招聘方式效率低下。**云聘 · 直通车** 致力于打造一个**高颜值、高性能、全闭环**的校招对接平台。
+在数字化校招环境下，**云聘 · 直通车** 致力于打造一个**高颜值、高性能、全闭环**的校招对接平台。
 本项目通过现代化的 UI 设计语言和严谨的后端架构，实现了从**职位精准推送**到**简历在线渲染**，再到**企业审核入职**的全流程数字化管理。
 
 ---
 
-## ✨ 核心技术亮点 | Technical Highlights
+## ✨ 核心技术架构 | Technical Stack
 
-### 1. 🎨 沉浸式 UI/UX 设计
-- **动态背景引擎**：登录与注册页面采用自研 CSS 线性流光动画，配合 **Backdrop Filter** 磨砂玻璃特效，提供极佳的第一眼视觉冲击力。
-- **响应式交互布局**：基于 Element Plus 的栅格系统，完美适配从笔记本到 4K 显示器的不同分辨率。
-- **平滑过场动画**：路由切换采用 `fade-transform` 动效，告别生硬的页面跳转，提升系统操控手感。
+### 🎨 前端后期框架深度集成 (Modern Frontend)
+- **核心框架**：`Vue 3.5+` (采用 `script setup` 组合式 API，逻辑高度解耦)。
+- **构建引擎**：`Vite 5+` (极速热重载，秒级响应式开发体验)。
+- **UI 组件库**：`Element Plus` (全量集成 Icon 图标库，配合磨砂玻璃 CSS 动效)。
+- **数据可视化**：`ECharts 5` (深度定制环形图与渐变面积折线图，展示业务趋势)。
+- **富文本引擎**：`VueQuill` (支持 HTML 排版的职位描述编辑器)。
+- **网络层封装**：`Axios` (集成全局请求/响应拦截器，自动处理 Token 鉴权与 HTTP 错误状态)。
+- **路由系统**：`Vue Router 4` (支持多角色权限守卫，防止非法越权访问)。
 
-### 2. 📊 高级数据可视化 (ECharts 5)
-- **行业分析模型**：后端聚合职位行业属性，前端通过环形图实时呈现市场热度分布。
-- **动态趋势分析**：通过折线面积图展示平台近七日的投递量与职位增长量，数据驱动运营。
-
-### 3. 📝 简历实时渲染引擎 (A4 Standard)
-- **所见即所得**：采用双栏布局，左侧录入个人核心信息，右侧同步渲染符合 A4 纸张标准的专业简历，支持预览与格式控制。
+### ⚙️ 后端生产级架构 (Enterprise Backend)
+- **核心框架**：`Spring Boot 3.x` (高性能 RESTful API 架构)。
+- **持久层**：`MyBatis` (精简 SQL 映射，配合数据库连接池 HikariCP)。
+- **安全鉴权**：基于自定义 Token 的认证机制，多粒度角色控制（管理员/企业/学生）。
+- **文件服务**：集成磁盘文件上传映射，支持实时头像与 Logo 存储。
 
 ---
 
-## 📸 视觉画廊与功能详解 | Feature Gallery
+## 📸 视觉画廊与功能矩阵 | Feature Gallery
 
 ### 🔐 01. 智能门户与鉴权 (Portal & Auth)
 <div align="center">
   <img src="screenshots/login.png" width="800" alt="登录页面" />
-  <p><i>（建议截图重点：展示带有流光背景和磨砂玻璃卡片的登录框）</i></p>
+  <p><i>登录页：采用线性流光背景与磨砂玻璃视觉特效</i></p>
 </div>
 
-- **多角色验证**：支持学生、企业、管理员三重角色一键切换登录。
-- **安全拦截**：集成 JWT Token 验证机制，对所有受保护路由进行全量守卫。
+- **多身份识别**：系统根据登录角色（Admin/Company/Student）动态下发菜单与权限。
+- **JWT 鉴权**：前端 Axios 拦截器自动注入 Token，确保存访安全。
 
-### 🏠 02. 管理员驾驶舱 (Admin Dashboard)
+### 🏠 02. 管理员数据驾驶舱 (Dashboard)
 <div align="center">
-  <img src="screenshots/home.png" width="800" alt="数据仪表盘" />
-  <p><i>（建议截图重点：展示顶部的渐变色统计卡片和底部的 ECharts 图表区）</i></p>
+  <img src="screenshots/home.png" width="800" alt="首页数据面板" />
+  <p><i>管理员首页：实时汇总全平台运营指标，集成 ECharts 动态分析</i></p>
 </div>
 
 - **全量指标统计**：实时统计注册人数、入驻企业、在招职位及累计投递量。
-- **运营趋势监控**：直观展示平台数据增长曲线。
+- **业务趋势监控**：通过折线面积图展示平台近七日的投递量与职位增长量。
 
-### 💼 03. 职位大厅与智能搜索 (Job Hall)
+### 💼 03. 职位大厅与智能匹配 (Job Hall)
 <div align="center">
-  <img src="screenshots/jobhall.png" width="800" alt="职位列表" />
-  <p><i>（建议截图重点：展示带有“急招”、“校园招聘”标签的悬浮特效职位卡片）</i></p>
+  <img src="screenshots/job_hall.png" width="800" alt="职位大厅" />
+  <p><i>职位大厅：精致的悬浮阴影职位卡片，支持实时搜索与状态联动</i></p>
 </div>
 
-- **卡片式瀑布流**：精致的职位卡片设计，支持悬浮阴影特效。
-- **智能标签系统**：自动识别职位状态（已投递变灰、已收藏高亮）。
-- **实时搜索**：支持公司名、职位名关键字秒级响应搜索。
+- **卡片式瀑布流**：展示职位详情、薪资标签及企业认证标识。
+- **投递拦截逻辑**：已投递职位自动变灰并禁用按钮，防止重复投递。
 
-### 📄 04. 简历编辑与 A4 预览 (Resume Center)
+### 📄 04. 简历编辑与 A4 渲染 (Resume Center)
 <div align="center">
-  <img src="screenshots/profile.png" width="800" alt="简历编辑" />
-  <p><i>（建议截图重点：展示左侧编辑表单与右侧专业的蓝色调简历预览区）</i></p>
+  <img src="screenshots/profile.png" width="800" alt="简历中心" />
+  <p><i>简历编辑：左侧表单实时联动右侧 A4 格式专业简历预览</i></p>
 </div>
 
-- **简历全字段维护**：涵盖基础信息、教育背景、专业技能、自我评价。
-- **动态头像上传**：集成文件上传服务，支持个人形象照即时预览。
+- **所见即所得**：支持简历基础信息、教育背景、自我评价的实时渲染。
+- **头像上传**：支持个人照片异步上传与本地即时预览。
 
-### 🏢 05. 企业招聘管理 (Corporate Management)
+### 🏢 05. 企业中心与职位发布 (Enterprise Hub)
 <div align="center">
-  <img src="screenshots/company.png" width="800" alt="企业中心" />
-  <p><i>（建议截图重点：展示企业发布职位时的富文本编辑器页面）</i></p>
+  <div style="display: flex; gap: 10px;">
+    <img src="screenshots/company_manage.png" width="395" alt="公司管理" />
+    <img src="screenshots/job_publish.png" width="395" alt="发布职位" />
+  </div>
+  <p><i>企业端：支持企业信息认证管理及富文本职位发布</i></p>
 </div>
 
-- **富文本发布**：内置 Quill 编辑器，支持加粗、列表、图片等复杂排版。
-- **申请流程审批**：企业可实时查阅投递列表，并进行录用或拒绝操作。
+- **富文本排版**：职位要求支持加粗、列表、对齐等复杂格式。
+- **审核状态闭环**：企业可实时查看投递列表并处理学生申请。
+
+### 📬 06. 投递记录与进度追踪 (Applications)
+<div align="center">
+  <img src="screenshots/application.png" width="800" alt="申请列表" />
+  <p><i>投递管理：学生可实时查看申请进度（待审核/已录用/被驳回）</i></p>
+</div>
 
 ---
 
-## 🛠️ 后端架构与功能目录
+## 📂 核心工程架构
 
-### 📦 核心实体模型
-- **User (用户)**: 统一身份标识，支持权限分级。
-- **Job (职位)**: 存储薪资、要求、发布时间等元数据。
-- **Student (学生)**: 存储详细简历与求职意向。
-- **Company (公司)**: 存储企业背景、行业认证与 Logo。
-- **Application (申请)**: 记录投递全生命周期状态（PENDING/APPROVED/REJECTED）。
-
-### 📂 核心目录架构
+### 🏗️ 后端目录
 ```text
-MyJobSystem/
-├── employment-system-backend/   # SpringBoot 3 后端核心
-│   ├── controller/              # RESTful API 路由入口
-│   ├── entity/                  # 数据库对象映射模型
-│   ├── mapper/                  # MyBatis 动态 SQL 映射
-│   └── service/                 # 核心业务逻辑处理层
-├── frontend/                    # Vue 3 前端工程
-│   ├── src/views/               # 核心 UI 视图组件
-│   ├── src/router/              # 动态路由与导航守卫
-│   ├── src/utils/               # Axios 拦截器与工具函数
-│   └── src/style/               # 全局样式与公共 CSS
-└── LICENSE                      # MIT 许可证
+employment-system-backend/
+├── controller/        # RESTful 控制器 (统一 /api 路由)
+├── common/            # 全局统一响应对象 Result.java
+├── config/            # MyBatis 与 Web 跨域拦截配置
+├── entity/            # 数据库 POJO 实体类
+├── mapper/            # MyBatis XML 与接口映射
+└── service/           # 业务逻辑接口及其实现层
+```
+
+### 🖼️ 前端目录
+```text
+frontend/
+├── src/views/         # 核心 UI 视图 (Home, JobHall, Profile, etc.)
+├── src/api/           # 接口统一封装与 Axios 配置
+├── src/router/        # 权限守卫与动态路由配置
+├── src/utils/         # 常用工具类封装 (request.js)
+└── src/assets/        # 静态资源与样式表
 ```
 
 ---
 
-## 🚀 极简部署方案 | Deployment
-
-### 1. 数据库环境
-```sql
-CREATE DATABASE yunpin CHARACTER SET utf8mb4;
--- 导入 project_schema.sql (若无脚本，请根据实体类生成)
-```
-
-### 2. 后端服务 (Port: 8080)
-1. 确认 `application.properties` 中的 DB 连接正确。
-2. 运行 `mvn clean spring-boot:run`。
-
-### 3. 前端服务 (Port: 5173)
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
----
-
-## 🤝 贡献与反馈
-- **提交 Bug**: 请前往 [Issues](https://github.com/YfengJ/Yunpin/issues) 页面。
-- **开源协议**: 采用 **MIT License**，欢迎自由 Fork 与交流。
+## 🤝 开发者信息
+- **项目作者**: YfengJ
+- **开发日期**: 2026年2月
+- **开源协议**: MIT License
+- **核心理念**: 为每一位求职者点亮指路明灯。
 
 ---
 <div align="center">
-  <p>© 2026 <b>YfengJ</b>. 为每一位求职者点亮指路明灯。</p>
+  <p>© 2026 <b>YfengJ</b>. 版权所有。</p>
 </div>
