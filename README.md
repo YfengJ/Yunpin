@@ -8,6 +8,10 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
 </div>
 
+<div align="center">
+  <strong>⭐ 如果这个项目对你有帮助，请在 GitHub 给一个 Star！你的支持是我持续优化的动力。</strong>
+</div>
+
 > ⚠️ **重要声明**：本项目内展示的所有职位信息、企业名称、办公地址、联系电话及 Logo 图片均为演示用的**虚构数据**，仅供学术交流与功能展示使用，不构成任何真实的招聘要约。若有雷同，纯属巧合。
 
 ---
