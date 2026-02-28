@@ -132,6 +132,11 @@ frontend/
 - **核心理念**: 为每一位求职者点亮指路明灯。
 
 ---
+
+<div align="center">
+  <strong>⭐ 如果这个项目对你有帮助，请在 GitHub 给一个 Star！你的支持是我持续优化的动力。</strong>
+</div>
+
 <div align="center">
   <p>© 2026 <b>YfengJ</b>. 版权所有。</p>
 </div>
