@@ -38,6 +38,15 @@ const routes = [
         component: () => import('../views/JobHall.vue'),
         meta: { name: '💼 职位大厅' }
       },
+      // 🔥🔥🔥 新增：我的收藏路由 🔥🔥🔥
+      {
+        path: 'my-favorites',
+        name: 'MyFavorites',
+        // ⚠️ 注意：这里假设你按我上一步的指示，文件建在 views/dashboard/ 下
+        // 如果你建在 views/ 下，请删掉中间的 /dashboard
+        component: () => import('../views/MyFavorites.vue'),
+        meta: { name: '🌟 我的收藏夹' }
+      },
       {
         path: 'profile',
         name: 'Profile',
@@ -56,7 +65,6 @@ const routes = [
         component: () => import('../views/CompanyManagement.vue'),
         meta: { name: '🏢 合作企业管理' }
       },
-      // 🔥🔥🔥 新增：管理员用户管理路由 🔥🔥🔥
       {
         path: 'users',
         name: 'UserManagement',

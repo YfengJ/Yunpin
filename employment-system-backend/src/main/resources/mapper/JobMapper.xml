@@ -13,26 +13,34 @@
         <result property="updateTime" column="update_time" />
 
         <result property="companyName" column="company_name" />
+        <result property="companyLogo" column="company_logo" />
     </resultMap>
 
     <select id="findAll" resultMap="JobResultMap">
         SELECT
         j.*,
-        c.company_name
+        c.company_name,
+        c.logo AS company_logo
         FROM job j
         LEFT JOIN company c ON j.company_id = c.id
         <where>
             <if test="name != null and name != ''">
-                AND j.job_name LIKE concat('%', #{name}, '%')
+                AND (
+                j.job_name LIKE concat('%', #{name}, '%')
+                OR
+                c.company_name LIKE concat('%', #{name}, '%')
+                )
             </if>
         </where>
         ORDER BY j.create_time DESC
     </select>
 
     <select id="findById" resultMap="JobResultMap">
-        SELECT j.*, c.company_name
-        FROM job j
-                 LEFT JOIN company c ON j.company_id = c.id
+        SELECT
+            j.*,
+            c.company_name,
+            c.logo AS company_logo FROM job j
+                                            LEFT JOIN company c ON j.company_id = c.id
         WHERE j.id = #{id}
     </select>
 

@@ -8,6 +8,9 @@
     <resultMap id="BaseResultMap" type="com.example.employment.entity.Company">
         <id column="id" property="id" />
         <result column="company_name" property="companyName" />
+        <result column="logo" property="logo" />
+        <result column="industry" property="industry" />
+
         <result column="description" property="description" />
         <result column="contact_phone" property="contactPhone" />
         <result column="address" property="address" />
@@ -29,13 +32,15 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO company(company_name, description, contact_phone, address, user_id, create_time, update_time)
-        VALUES (#{companyName}, #{description}, #{contactPhone}, #{address}, #{userId}, NOW(), NOW())
+        INSERT INTO company(company_name, logo, industry, description, contact_phone, address, user_id, create_time, update_time)
+        VALUES (#{companyName}, #{logo}, #{industry}, #{description}, #{contactPhone}, #{address}, #{userId}, NOW(), NOW())
     </insert>
 
     <update id="update">
         UPDATE company
         SET company_name = #{companyName},
+            logo = #{logo},
+            industry = #{industry},
             description = #{description},
             contact_phone = #{contactPhone},
             address = #{address},

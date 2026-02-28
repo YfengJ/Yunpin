@@ -16,36 +16,24 @@ public class ApplicationController {
     @Autowired
     private ApplicationService applicationService;
 
-    // 🔥 额外注入 Mapper，专门处理复杂的列表查询，不破坏原有的 Service 结构
     @Autowired
     private ApplicationMapper applicationMapper;
 
-    /**
-     * 🔥 智能列表查询接口
-     * 前端传 userId 和 role 过来，后端自动决定给看什么数据
-     */
     @GetMapping
     public Result<List<Application>> getList(
             @RequestParam(required = false) Long userId,
             @RequestParam(required = false) String role
     ) {
         List<Application> list;
-
         if ("STUDENT".equalsIgnoreCase(role)) {
-            // 学生：只看自己投的
             list = applicationMapper.findByStudentId(userId);
         } else if ("COMPANY".equalsIgnoreCase(role)) {
-            // 企业：只看投给自己公司的
             list = applicationMapper.findByCompanyUserId(userId);
         } else {
-            // 管理员：看所有 (默认逻辑)
             list = applicationMapper.findAll();
         }
-
         return Result.success(list);
     }
-
-    // --- 其他接口保持不变 ---
 
     @GetMapping("/{id}")
     public Result<Application> getById(@PathVariable Long id) {
@@ -54,9 +42,15 @@ public class ApplicationController {
 
     @PostMapping
     public Result<String> create(@RequestBody Application application) {
+        // 🔥🔥 新增：重复投递校验
+        int count = applicationMapper.countByStudentAndJob(application.getStudentId(), application.getJobId());
+        if (count > 0) {
+            return Result.error("您已投递过该职位，请耐心等待结果，不要重复投递哦！");
+        }
+
         if (application.getStatus() == null) application.setStatus("PENDING");
         int res = applicationService.save(application);
-        return res > 0 ? Result.success("创建成功") : Result.error("创建失败");
+        return res > 0 ? Result.success("投递成功") : Result.error("投递失败");
     }
 
     @PutMapping("/{id}")

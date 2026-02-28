@@ -31,17 +31,13 @@ public class CompanyController {
     ) {
         // 如果是企业用户 (COMPANY)，只查自己关联的那一家公司
         if ("COMPANY".equalsIgnoreCase(role) && userId != null) {
-
-            // 🔥🔥🔥 核心修复：这里改成 selectByUserId 🔥🔥🔥
             Company myCompany = companyMapper.selectByUserId(userId);
-
             if (myCompany != null) {
                 return Result.success(Collections.singletonList(myCompany));
             } else {
                 return Result.success(Collections.emptyList());
             }
         }
-
         // 管理员查所有
         return Result.success(companyMapper.findAll());
     }
@@ -51,9 +47,12 @@ public class CompanyController {
         return Result.success(companyService.getById(id));
     }
 
+    // 录入公司信息
     @PostMapping
     public Result<String> create(@RequestBody Company company) {
-        return companyService.save(company) > 0 ? Result.success("创建成功") : Result.error("失败");
+        // 新录入的公司默认待审核
+        company.setAuditStatus("pending");
+        return companyService.save(company) > 0 ? Result.success("创建成功，请等待管理员审核") : Result.error("失败");
     }
 
     @PutMapping
@@ -64,5 +63,20 @@ public class CompanyController {
     @DeleteMapping("/{id}")
     public Result<String> delete(@PathVariable Long id) {
         return companyService.deleteById(id) > 0 ? Result.success("删除成功") : Result.error("失败");
+    }
+
+    // 🔥🔥🔥 新增：管理员审核接口 🔥🔥🔥
+    @PostMapping("/audit/{id}")
+    public Result<String> audit(@PathVariable Long id, @RequestParam String status) {
+        // 1. 先查出来
+        Company company = companyService.getById(id);
+        if (company == null) {
+            return Result.error("公司不存在");
+        }
+        // 2. 修改审核状态 (approved / rejected)
+        company.setAuditStatus(status);
+
+        // 3. 更新回数据库
+        return companyService.update(company) > 0 ? Result.success("审核操作成功") : Result.error("操作失败");
     }
 }

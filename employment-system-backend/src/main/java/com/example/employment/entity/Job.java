@@ -2,24 +2,23 @@ package com.example.employment.entity;
 
 import java.util.Date;
 
-/**
- * 职位实体类 (手动 Getter/Setter 版)
- */
 public class Job {
     private Long id;
     private Long companyId;
-    private String jobName;     // 对应数据库的 job_name
+    private String jobName;
     private String salary;
     private String description;
     private String status;
     private Date createTime;
     private Date updateTime;
 
-    // 额外的字段（如果 XML 里关联查询了公司名）
+    // --- 关联查询字段 ---
     private String companyName;
 
-    // --- 手动 Getter / Setter ---
+    // 🔥 新增：用于接收联表查询的公司Logo
+    private String companyLogo;
 
+    // --- Getter & Setter ---
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -46,4 +45,8 @@ public class Job {
 
     public String getCompanyName() { return companyName; }
     public void setCompanyName(String companyName) { this.companyName = companyName; }
+
+    // 🔥 Logo 的 Getter/Setter (必须有！)
+    public String getCompanyLogo() { return companyLogo; }
+    public void setCompanyLogo(String companyLogo) { this.companyLogo = companyLogo; }
 }
