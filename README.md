@@ -1,147 +1,140 @@
 # 🚀 云聘 · 直通车 (YunPin) — 校园级全栈招聘管理平台
 
-[![GitHub stars](https://img.shields.io/github/stars/YfengJ/Yunpin?style=flat-square)](https://github.com/YfengJ/Yunpin/stargazers)
-[![GitHub license](https://img.shields.io/github/license/YfengJ/Yunpin?style=flat-square)](https://github.com/YfengJ/Yunpin/blob/master/LICENSE)
-[![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=flat-square&logo=java&logoColor=white)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/SpringBoot-3.1-6DB33F?style=flat-square&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![Vue 3](https://img.shields.io/badge/Vue.js-3.x-35495E?style=flat-square&logo=vuedotjs&logoColor=4FC08D)](https://vuejs.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
-
-**云聘 · 直通车** 是一款专为校园生态打造的现代化全栈招聘系统。通过对求职、招聘、审核三大环节的数字化重构，为**学生**提供沉浸式求职体验，为**企业**提供高效的人才筛选工具，为**管理员**提供多维度的系统治理手段。
+<div align="center">
+  <img src="https://img.shields.io/badge/Release-v1.0.0-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Framework-Vue_3.x-4fc08d?style=for-the-badge&logo=vue.js" />
+  <img src="https://img.shields.io/badge/Backend-SpringBoot_3.x-6db33f?style=for-the-badge&logo=springboot" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
+</div>
 
 ---
 
-## 🌟 核心特性与亮点
+## 📖 项目深度背景 | Project Overview
 
-- **📊 智慧数据看板**：集成 **ECharts 5**，实时渲染行业职位分布饼图与近 7 日平台活跃趋势线图，辅助决策。
-- **📝 专业富文本交互**：基于 **VueQuill** 深度定制职位描述编辑器，支持图文混排，让职位发布更具吸引力。
-- **📄 A4 级简历即时预览**：独创“左侧编辑、右侧实时渲染”模式，严格遵循 A4 纸张标准，支持简历预览与下载导出。
-- **🔐 严谨的鉴权机制**：基于 **JWT + Axios 拦截器** 的无感认证流程，确保用户数据的访问安全与系统稳健。
-- **🚀 现代化交互设计**：采用 **Vue 3 (Composition API)** + **Element Plus**，内置流光背景登录页、毛玻璃特效卡片及流畅的页面平移动画。
+在当今数字化校园求职环境下，传统的招聘方式效率低下。**云聘 · 直通车** 致力于打造一个**高颜值、高性能、全闭环**的校招对接平台。
+本项目通过现代化的 UI 设计语言和严谨的后端架构，实现了从**职位精准推送**到**简历在线渲染**，再到**企业审核入职**的全流程数字化管理。
 
 ---
 
-## 🛠️ 技术图谱
+## ✨ 核心技术亮点 | Technical Highlights
 
-### 前端技术栈 (Frontend)
-- **核心框架**：Vue 3.x (Composition API)
-- **构建工具**：Vite 5.x (极速冷启动与热更新)
-- **UI 组件库**：Element Plus (2.8+ 现代化定制)
-- **路由管理**：Vue Router (动态路由与守卫拦截)
-- **数据交互**：Axios (Promise 封装 + 全局拦截)
-- **图表驱动**：Apache ECharts (大数据量实时渲染)
+### 1. 🎨 沉浸式 UI/UX 设计
+- **动态背景引擎**：登录与注册页面采用自研 CSS 线性流光动画，配合 **Backdrop Filter** 磨砂玻璃特效，提供极佳的第一眼视觉冲击力。
+- **响应式交互布局**：基于 Element Plus 的栅格系统，完美适配从笔记本到 4K 显示器的不同分辨率。
+- **平滑过场动画**：路由切换采用 `fade-transform` 动效，告别生硬的页面跳转，提升系统操控手感。
 
-### 后端技术栈 (Backend)
-- **核心框架**：Spring Boot 3.x
-- **ORM 框架**：MyBatis (XML 映射 + 动态 SQL)
-- **安全机制**：基于 Token 的认证与角色访问控制
-- **数据库**：MySQL 8.0+ (高性能关系型数据库)
-- **构建工具**：Maven 3.9+
+### 2. 📊 高级数据可视化 (ECharts 5)
+- **行业分析模型**：后端聚合职位行业属性，前端通过环形图实时呈现市场热度分布。
+- **动态趋势分析**：通过折线面积图展示平台近七日的投递量与职位增长量，数据驱动运营。
+
+### 3. 📝 简历实时渲染引擎 (A4 Standard)
+- **所见即所得**：采用双栏布局，左侧录入个人核心信息，右侧同步渲染符合 A4 纸张标准的专业简历，支持预览与格式控制。
 
 ---
 
-## 📋 功能矩阵 (Feature List)
+## 📸 视觉画廊与功能详解 | Feature Gallery
 
-### 👨‍🎓 学生端 (Student Portal)
-- **职位探索**：多维搜索（职位/公司名）、实时卡片预览、收藏/取消心仪职位。
-- **在线简历**：全字段简历编辑、头像上传、简历实时 A4 预览。
-- **投递管理**：一键投递、申请进度实时跟踪、收藏夹管理。
+### 🔐 01. 智能门户与鉴权 (Portal & Auth)
+<div align="center">
+  <img src="screenshots/login.png" width="800" alt="登录页面" />
+  <p><i>（建议截图重点：展示带有流光背景和磨砂玻璃卡片的登录框）</i></p>
+</div>
 
-### 🏢 企业端 (Company Portal)
-- **职位运营**：职位全生命周期管理（发布、编辑、下线）、富文本描述。
-- **简历筛选**：申请记录实时接收、求职者详情查阅、投递状态批量流转。
-- **企业名片**：公司 Logo、介绍、行业属性等企业背书信息的自主维护。
+- **多角色验证**：支持学生、企业、管理员三重角色一键切换登录。
+- **安全拦截**：集成 JWT Token 验证机制，对所有受保护路由进行全量守卫。
 
-### 👮‍♂️ 管理端 (Admin Portal)
-- **系统总览**：多维数据统计卡片、全站趋势分析图表。
-- **资源治理**：全站用户权限分配、入驻企业审核、所有职位宏观调控。
-- **申请监控**：全局投递记录追溯、数据异常波动监控。
+### 🏠 02. 管理员驾驶舱 (Admin Dashboard)
+<div align="center">
+  <img src="screenshots/home.png" width="800" alt="数据仪表盘" />
+  <p><i>（建议截图重点：展示顶部的渐变色统计卡片和底部的 ECharts 图表区）</i></p>
+</div>
+
+- **全量指标统计**：实时统计注册人数、入驻企业、在招职位及累计投递量。
+- **运营趋势监控**：直观展示平台数据增长曲线。
+
+### 💼 03. 职位大厅与智能搜索 (Job Hall)
+<div align="center">
+  <img src="screenshots/jobhall.png" width="800" alt="职位列表" />
+  <p><i>（建议截图重点：展示带有“急招”、“校园招聘”标签的悬浮特效职位卡片）</i></p>
+</div>
+
+- **卡片式瀑布流**：精致的职位卡片设计，支持悬浮阴影特效。
+- **智能标签系统**：自动识别职位状态（已投递变灰、已收藏高亮）。
+- **实时搜索**：支持公司名、职位名关键字秒级响应搜索。
+
+### 📄 04. 简历编辑与 A4 预览 (Resume Center)
+<div align="center">
+  <img src="screenshots/profile.png" width="800" alt="简历编辑" />
+  <p><i>（建议截图重点：展示左侧编辑表单与右侧专业的蓝色调简历预览区）</i></p>
+</div>
+
+- **简历全字段维护**：涵盖基础信息、教育背景、专业技能、自我评价。
+- **动态头像上传**：集成文件上传服务，支持个人形象照即时预览。
+
+### 🏢 05. 企业招聘管理 (Corporate Management)
+<div align="center">
+  <img src="screenshots/company.png" width="800" alt="企业中心" />
+  <p><i>（建议截图重点：展示企业发布职位时的富文本编辑器页面）</i></p>
+</div>
+
+- **富文本发布**：内置 Quill 编辑器，支持加粗、列表、图片等复杂排版。
+- **申请流程审批**：企业可实时查阅投递列表，并进行录用或拒绝操作。
 
 ---
 
-## 📸 界面预览
+## 🛠️ 后端架构与功能目录
 
-### 🏠 智能仪表盘 (Dashboard)
-<img width="1264" height="665" alt="home" src="https://github.com/user-attachments/assets/816f0afb-e2d2-47f2-8f72-1e3e91ca868c" />
-*核心指标（学生/企业/职位/投递）全量监控。*
+### 📦 核心实体模型
+- **User (用户)**: 统一身份标识，支持权限分级。
+- **Job (职位)**: 存储薪资、要求、发布时间等元数据。
+- **Student (学生)**: 存储详细简历与求职意向。
+- **Company (公司)**: 存储企业背景、行业认证与 Logo。
+- **Application (申请)**: 记录投递全生命周期状态（PENDING/APPROVED/REJECTED）。
 
-### 💼 职位大厅 (Job Hall)
-<img width="1279" height="658" alt="jobhall" src="https://github.com/user-attachments/assets/b171b6b8-f9c7-45b1-b981-46ed33ea3b47" />
-*标签化设计，状态实时反馈（如：已投递、已收藏）。*
-
-### 👤 简历中心 (Resume Center)
-<img width="1276" height="665" alt="profile" src="https://github.com/user-attachments/assets/1957a091-a461-4302-97cd-5612305ec2dd" />
-*左侧信息输入，右侧 A4 样式实时预览。*
-
-### 🔐 极简登录 (Auth)
-<img width="1277" height="672" alt="login" src="https://github.com/user-attachments/assets/9f0104f1-52b3-4161-bd0e-386282388054" />
-*沉浸式视觉背景，支持动态角色验证。*
-
----
-
-## 📂 目录结构说明
-
+### 📂 核心目录架构
 ```text
 MyJobSystem/
-├── employment-system-backend/   # Java Spring Boot 后端源码
-│   ├── src/main/java/com/example/employment/
-│   │   ├── controller/          # 接口控制器 (Application, Company, Job, etc.)
-│   │   ├── entity/              # 数据库实体类
-│   │   ├── mapper/              # MyBatis 接口层
-│   │   └── service/             # 业务逻辑实现层
-│   └── src/main/resources/
-│       ├── mapper/              # MyBatis XML 映射文件
-│       └── application.properties # 核心全局配置文件 (敏感信息已脱敏)
-├── frontend/                    # Vue 3 前端源码
-│   ├── src/
-│   │   ├── api/                 # Axios 接口模块化封装
-│   │   ├── components/          # 公共 UI 组件
-│   │   ├── router/              # Vue Router 路由配置
-│   │   ├── utils/               # 工具类 (request.js 拦截器)
-│   │   └── views/               # 核心页面 (Login, Home, JobHall, etc.)
-│   ├── vite.config.js           # Vite 编译与代理配置
-│   └── package.json             # 依赖管理清单
-├── LICENSE                      # MIT 开源协议
-└── README.md                    # 项目核心指南
+├── employment-system-backend/   # SpringBoot 3 后端核心
+│   ├── controller/              # RESTful API 路由入口
+│   ├── entity/                  # 数据库对象映射模型
+│   ├── mapper/                  # MyBatis 动态 SQL 映射
+│   └── service/                 # 核心业务逻辑处理层
+├── frontend/                    # Vue 3 前端工程
+│   ├── src/views/               # 核心 UI 视图组件
+│   ├── src/router/              # 动态路由与导航守卫
+│   ├── src/utils/               # Axios 拦截器与工具函数
+│   └── src/style/               # 全局样式与公共 CSS
+└── LICENSE                      # MIT 许可证
 ```
 
 ---
 
-## 🚀 部署指引
+## 🚀 极简部署方案 | Deployment
 
-### 1. 环境准备
-- **Java**: JDK 17+
-- **Database**: MySQL 8.0+
-- **Node.js**: v16+ & npm 8+
-- **IDE**: IntelliJ IDEA (推荐) & VS Code
+### 1. 数据库环境
+```sql
+CREATE DATABASE yunpin CHARACTER SET utf8mb4;
+-- 导入 project_schema.sql (若无脚本，请根据实体类生成)
+```
 
-### 2. 数据库初始化
-1. 创建名为 `yunpin` 的数据库。
-2. 运行项目提供的 SQL 脚本（如需协助请联系作者）。
+### 2. 后端服务 (Port: 8080)
+1. 确认 `application.properties` 中的 DB 连接正确。
+2. 运行 `mvn clean spring-boot:run`。
 
-### 3. 后端启动
-1. 复制 `application.properties.example` 为 `application.properties`。
-2. 修改 `spring.datasource.url`、`username` 和 `password` 为您的本地环境。
-3. 执行：`mvn clean install` 并运行 `EmploymentSystemBackendApplication`。
-
-### 4. 前端启动
+### 3. 前端服务 (Port: 5173)
 ```bash
 cd frontend
-npm install           # 安装项目依赖
-npm run dev           # 启动开发服务器
+npm install
+npm run dev
 ```
-访问：`http://localhost:5173`。
 
 ---
 
-## ⚠️ 注意事项
-- **环境隔离**：本项目通过 `vite.config.js` 配置代理转发，前端访问 `/api` 路径将自动路由至后端 `8080` 端口。
-- **敏感信息**：提交至 Git 的配置文件已忽略敏感数据库密码，请务必根据部署指引手动创建。
+## 🤝 贡献与反馈
+- **提交 Bug**: 请前往 [Issues](https://github.com/YfengJ/Yunpin/issues) 页面。
+- **开源协议**: 采用 **MIT License**，欢迎自由 Fork 与交流。
 
-## 🤝 参与贡献
-如果您有任何好的想法，欢迎提交 Pull Request 或通过 Issues 反馈！
-
-## 📄 开源协议
-本项目采用 **MIT License**，您可以自由使用、修改并分发。
-
-© 2026 YfengJ. 开源于 GitHub.
+---
+<div align="center">
+  <p>© 2026 <b>YfengJ</b>. 为每一位求职者点亮指路明灯。</p>
+</div>
